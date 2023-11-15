@@ -1,0 +1,22 @@
+{
+  "name": "CISPA Website Hacks",
+  "description": "Switches on the light and adds the ticket age to the ticket system.",
+  "version": "2.0",
+  "manifest_version": 3,
+  "author": "golla@cispa.de",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+      "matches": ["https://*.cispa.de/*"],
+      "js": ["inject.js"],
+      "run_at": "document_end"
+    }],
+    "host_permissions": ["https://*.cispa.de/*"]
+}
