@@ -16,23 +16,29 @@ function init() {
         let ticket_creation_date = document.getElementsByClassName("Age");
         // We skip the header
         for (let i = 1; i < ticket_creation_date.length; i++) {
-            let current_date = ticket_creation_date[i]
-            let ticket_age = dhm(Date.now() - Date.parse(current_date.title))
+            // Parse internal date: 07.11.2024 17:31
+            let day = ticket_creation_date[i].title.slice(0,2);
+            let month = ticket_creation_date[i].title.slice(3,5);
+            let year = ticket_creation_date[i].title.slice(6,10);
+            let hour = ticket_creation_date[i].title.slice(11,13);
+            let minute = ticket_creation_date[i].title.slice(14,16);
+            let ticket_date_str = year+'-'+month+'-'+day+' '+hour+':'+minute;
+            let ticket_age = dhm(Date.now() - Date.parse(ticket_date_str));
             let days = ticket_age[0];
             let hours = ticket_age[1];
             // Change color
             if (days < 14) {
-                current_date.style.color = "green"; // green
-                current_date.innerText = days + "d " + hours + "h 😇";
+                ticket_creation_date[i].style.color = "green"; // green
+                ticket_creation_date[i].innerText = days + "d " + hours + "h 😇";
             } else if (days >= 14 && days < 28) {
-                current_date.style.color = "#A66D05"; // yellow
-                current_date.innerText = days + "d " + hours + "h 🥹";
+                ticket_creation_date[i].style.color = "#A66D05"; // yellow
+                ticket_creation_date[i].innerText = days + "d " + hours + "h 🥹";
             } else if (days >= 28 && days < 56) {
-                current_date.style.color = "#F21616"; // orange
-                current_date.innerText = days + "d " + hours + "h 😭";
+                ticket_creation_date[i].style.color = "#F21616"; // orange
+                ticket_creation_date[i].innerText = days + "d " + hours + "h 😭";
             } else if (days >= 56) {
-                current_date.style.color = "#591521"; // red
-                current_date.innerText = days + "d " + hours + "h 🫣";
+                ticket_creation_date[i].style.color = "#591521"; // red
+                ticket_creation_date[i].innerText = days + "d " + hours + "h 🫣";
             }
         }
         console.log("CISPA Ticket Fix: Done.");
