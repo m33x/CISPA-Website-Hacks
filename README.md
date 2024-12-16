@@ -16,6 +16,7 @@ A Chrome extension that increases quality of life on [cispa.de](https://cispa.de
 </div>
 
 ## Version History
+- 2.1: 2024-12-16 Fixed date parsing bug in ticket system
 - 2.0: 2023-11-15 Fixed lightmode, added ticket age
 - 1.0: 2023-10-02 Added lightmode
 
