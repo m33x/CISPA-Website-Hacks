@@ -1,7 +1,7 @@
 {
   "name": "CISPA Website Hacks",
   "description": "Switches on the light and adds the ticket age to the ticket system.",
-  "version": "2.1",
+  "version": "2.2",
   "manifest_version": 3,
   "author": "golla@cispa.de",
   "icons": {

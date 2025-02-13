@@ -16,13 +16,23 @@ function init() {
         let ticket_creation_date = document.getElementsByClassName("Age");
         // We skip the header
         for (let i = 1; i < ticket_creation_date.length; i++) {
-            // Parse internal date: 07.11.2024 17:31
-            let day = ticket_creation_date[i].title.slice(0,2);
-            let month = ticket_creation_date[i].title.slice(3,5);
+            // Check how the date is represented in the HTML (based on the browser's locale setting)
+            let separator = ticket_creation_date[i].title.slice(2,3);
+            let day;
+            let month;
+            if (separator == "/") {
+                // Parse: 02/13/2025 15:24
+                month = ticket_creation_date[i].title.slice(0,2);
+                day = ticket_creation_date[i].title.slice(3,5);
+            } else {
+                // Parse: 07.11.2024 17:31
+                day = ticket_creation_date[i].title.slice(0,2);
+                month = ticket_creation_date[i].title.slice(3,5);
+            }
             let year = ticket_creation_date[i].title.slice(6,10);
             let hour = ticket_creation_date[i].title.slice(11,13);
             let minute = ticket_creation_date[i].title.slice(14,16);
-            let ticket_date_str = year+'-'+month+'-'+day+' '+hour+':'+minute;
+            let ticket_date_str = year+'-'+month+'-'+day+'T'+hour+':'+minute+':00';
             let ticket_age = dhm(Date.now() - Date.parse(ticket_date_str));
             let days = ticket_age[0];
             let hours = ticket_age[1];
